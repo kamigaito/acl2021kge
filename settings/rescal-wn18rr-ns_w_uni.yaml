@@ -1,0 +1,67 @@
+dataset:
+  name: wnrr
+eval:
+  batch_size: 256
+  metrics_per:
+    relation_type: true
+  trace_level: example
+import:
+- rescal
+- reciprocal_relations_model
+lookup_embedder:
+  dim: 128
+  initialize: normal_
+  initialize_args:
+    normal_:
+      mean: 0.0
+      std: 0.0016394765
+    uniform_:
+      a: -0.0401346708
+    xavier_normal_:
+      gain: 1.0
+    xavier_uniform_:
+      gain: 1.0
+  regularize: ''
+model: reciprocal_relations_model
+negative_sampling:
+  num_samples:
+    o: 8
+    p: -1
+    s: 6
+reciprocal_relations_model:
+  base_model:
+    type: rescal
+train:
+  auto_correct: true
+  batch_size: 512
+  loss: bce
+  loss_arg: 1.0
+  lr_scheduler: ReduceLROnPlateau
+  lr_scheduler_args:
+    factor: 0.95
+    mode: max
+    patience: 1
+    threshold: 0.0001
+  max_epochs: 400
+  optimizer: Adam
+  optimizer_args:
+    lr: 0.0015198377
+  type: negative_sampling
+rescal:
+  entity_embedder:
+    regularize_args:
+      weighted: true
+    dropout: -0.1896412373
+    regularize_weight: 2.52058834509503E-18
+  relation_embedder:
+    regularize_args:
+      weighted: true
+    dim: -1
+    dropout: -0.401307404
+    regularize_weight: 0.0039718319
+valid:
+  early_stopping:
+    min_threshold:
+      epochs: 50
+      metric_value: 0.05
+    patience: 10

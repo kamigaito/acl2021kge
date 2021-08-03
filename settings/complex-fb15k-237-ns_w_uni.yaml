@@ -1,0 +1,65 @@
+complex:
+  entity_embedder:
+    dropout: 0.182161808
+    regularize_weight: 0.00000000634
+  relation_embedder:
+    dropout: 0.04366219
+    regularize_weight: 9.08E-18
+dataset:
+  name: fb15k-237
+eval:
+  batch_size: 512
+  metrics_per:
+    relation_type: true
+  trace_level: example
+import:
+- reciprocal_relations_model
+- complex
+lookup_embedder:
+  dim: 256
+  initialize: normal_
+  initialize_args:
+    normal_:
+      mean: 0.0
+      std: 0.000480913
+    uniform_:
+      a: -0.979749629
+    xavier_normal_:
+      gain: 1.0
+    xavier_uniform_:
+      gain: 1.0
+  regularize_args:
+    p: 2
+    weighted: true
+model: reciprocal_relations_model
+negative_sampling:
+  implementation: batch
+  num_samples:
+    o: 48
+    p: -1
+    s: 1
+reciprocal_relations_model:
+  base_model:
+    type: complex
+train:
+  auto_correct: true
+  batch_size: 512
+  loss: bce
+  loss_arg: 1.0
+  lr_scheduler: ReduceLROnPlateau
+  lr_scheduler_args:
+    factor: 0.95
+    mode: max
+    patience: 4
+    threshold: 0.0001
+  max_epochs: 800
+  optimizer: Adagrad
+  optimizer_args:
+    lr: 0.240771162
+  type: negative_sampling
+valid:
+  early_stopping:
+    min_threshold:
+      epochs: 50
+      metric_value: 0.05
+    patience: 10
