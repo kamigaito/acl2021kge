@@ -1,6 +1,6 @@
 # ACL2021KGE
 
-This is an implementation of our paper "Unified Interpretation of Softmax Cross-Entropy and Negative Sampling: With Case Study for Knowledge Graph Embedding" in ACL-IJCNLP2021:
+This is an implementation of our paper "[Unified Interpretation of Softmax Cross-Entropy and Negative Sampling: With Case Study for Knowledge Graph Embedding](https://arxiv.org/abs/2106.07250)" in ACL-IJCNLP2021:
 ```
 @inproceedings{kamigaito-hayashi-2021-unified,
     title = "Unified Interpretation of Softmax Cross-Entropy and Negative Sampling: With Case Study for Knowledge Graph Embedding",
