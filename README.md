@@ -18,7 +18,8 @@ This is an implementation of our paper "Unified Interpretation of Softmax Cross-
 }
 ```
 We used [LibKGE](https://github.com/uma-pi1/kge) for building this code.
-We wrote the following instructions on the basis of original the `README.md` in [LibKGE](https://github.com/uma-pi1/kge).
+
+We wrote the following instructions on the basis of the original `README.md` in [LibKGE](https://github.com/uma-pi1/kge).
 
 ## Quick start
 
